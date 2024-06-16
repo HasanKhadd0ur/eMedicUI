@@ -7,8 +7,22 @@ debugger
 const GetAll = () => {
     
 
-    return  axios.get(
+    return axios.get(
         API_URL,
+        
+        {
+            
+           withCredentials: true,
+           
+        },
+    );
+};
+
+const GetById = (id) => {
+    
+
+    return  axios.get(
+        API_URL+`/${id}`,
         
         {
             
@@ -25,5 +39,6 @@ const log = () => {
 
 export default {
     GetAll,
+    GetById,
     log
 };

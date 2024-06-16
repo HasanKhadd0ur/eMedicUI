@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 
-import { useNavigate  } from 'react-router-dom';
+import { redirect, useNavigate  } from 'react-router-dom';
 import AuthContext from '../contexts/AuthContext';
 import authService from '../api/authService';
 import log from '../api/authService';
@@ -25,7 +25,7 @@ debugger
             login(response.data);
 
             console.log(response.data);
-            document.href='/';            
+            redirect("/");
         } catch (error) {
             console.error(error);
         }

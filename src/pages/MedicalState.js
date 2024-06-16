@@ -1,16 +1,42 @@
-import React from 'react'
+import React, { useState, useContext } from 'react';
+
 import MedicalService  from '../Services/MedicalService'
+import MedicalCard from '../components/MedicalCard';
+import { useEffect } from 'react';
 export const MedicalState= () => {
-  const handleClick = async ()=>{
-    const response = await MedicalService.GetAll();
-    
-    console.log(response.data);
+  const [r,setR]= useState([]);
+	//debugger
+  let t =[]
+const h = ()=>{
+debugger
+      MedicalService
+        .GetAll()
+        .then(
+          (response)=>{
+            //setR(response.data);
+            console.log(response.data);
+            t=response.data
+            
+      	     t=t.map(e=>{return <MedicalCard medicalState={e} />})
+            setR(t);
+            
+	console.log(t)
+    }
+
+    );
+     
+	};
   
-  }
   return (
-<section>
-hkkhkhj
-<button onClick={handleClick}>get med</button>
-    </section>
-  )
+    <section className='page-section'>
+<button onClick={h}>get</button>
+
+  <div>      
+    { 
+    r
+    }
+  </div>
+
+</section>
+  );
 }
