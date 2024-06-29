@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate  } from 'react-router-dom';
-import authService from '../api/authService';
+import authService from '../../api/Authentication/authService';
 
 export const Register = () => {
     const [username, setUsername] = useState('');

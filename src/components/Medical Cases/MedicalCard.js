@@ -1,7 +1,11 @@
-import MedicalService  from "../Services/MedicalService";
+import MedicalService  from "../../api/Services/MedicalService";
 
+import { redirect, useNavigate  } from 'react-router-dom';
+const MedicalCard=({medicalState})=>{
+	console.log(medicalState)
 
-const MedicalCard=(medicalState)=>{
+	console.log(medicalState.prescriptionTime)
+    const Navigate = useNavigate ();
 
     return (
 
@@ -11,14 +15,14 @@ const MedicalCard=(medicalState)=>{
                 <div className="card mb-3" style={{borderRadius: ".5rem"}}>
                     <div className="row g-0">
                         <div className="col-md-4 gradient-custom text-center text-black"
-                             style={{borderTopLeftRadius: ".5rem", borderBottomRightRadius: ".5rem;"}}>
+                             style={{borderTopLeftRadius: ".5rem", borderBottomRightRadius: ".5rem"}}>
 
 
                             <div className="icon-box">
                                 <div className="icon " style={{color: "#5e54b3"}}><i className="fas fa-heartbeat  fa-8x "></i></div>
                             </div>         
-                            <h5>medicalState.name</h5>
-                            <p>Prescriped At  : @item.PrescriptionTime</p>
+                            <h5>{medicalState.stateName}</h5>
+                            <p>Prescriped At  : {medicalState.prescriptionTime}</p>
                             <a >
                                 <i className="far fa-edit mb-5"></i>
                             </a>
@@ -38,10 +42,10 @@ const MedicalCard=(medicalState)=>{
                                 <div className="row pt-1">
                                     <div className="col-6 mb-3">
                                         <h6>Description</h6>
-                                        <p className="text-muted">@item.StateDescription</p>
+                                        <p className="text-muted">{medicalState.stateDescription}</p>
                                     </div>
                                     <div className="col-6 mb-3">
-                                        <h6>Medicine count :@item.Medicines.Count()</h6>
+                                        <h6>Medicine count :{medicalState.medicines.length}</h6>
                                     </div>
                                 </div>
                                 <div className="row pt-1">
@@ -50,9 +54,7 @@ const MedicalCard=(medicalState)=>{
 
                                     </div>
                                     <div className="col-6 mb-3">
-
-                                        <a className="btn btn-primary" asp-action="Details" asp-controller="MedicalState" asp-route-id="@item.Id">Details </a>
-
+ 				<Navigate to="/MedicalState"/>
                                     </div>
 
 

@@ -2,7 +2,7 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
-const API_URL = 'https://localhost:44390/api/accessapi/';
+const API_URL = 'https://localhost:44390/api/access/';
 debugger
 const register = (username, email, password) => {
     return axios.post(API_URL + 'register', {

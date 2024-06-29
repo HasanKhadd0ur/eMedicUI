@@ -12,12 +12,19 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         // Check if the authentication cookie is present
         const authCookie = Cookies.get('auth');
+
+	console.log(authCookie);
+
         setIsAuthenticated(!!authCookie);
+
     }, []);
 
     const login = (user) => {
         setIsAuthenticated(true);
-        //setUser(user);
+        console.log(isAuthenticated,"login");
+Cookies.set('auth', 'true', { expires: 1000 });
+                
+        setUser(user);
     };
 
     const logout = () => {
@@ -26,7 +33,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+        <AuthContext.Provider value={{ isAuthenticated, user,login, logout }}>
             {children}
         </AuthContext.Provider>
     );

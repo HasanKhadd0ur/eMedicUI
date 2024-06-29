@@ -1,9 +1,8 @@
 import React, { useState, useContext } from 'react';
 
 import { redirect, useNavigate  } from 'react-router-dom';
-import AuthContext from '../contexts/AuthContext';
-import authService from '../api/authService';
-import log from '../api/authService';
+import AuthContext from '../../contexts/Authentication Context/AuthContext';
+import authService from '../../api/Authentication/authService';
 
 import Cookies from 'js-cookie';
 export const Login = () => {
@@ -12,7 +11,7 @@ export const Login = () => {
     const [rememberMe,SetRemeberMe] = useState(false);
     
     const { login } = useContext(AuthContext);
-    const history = useNavigate ();
+    const navigate = useNavigate ();
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -21,13 +20,16 @@ debugger
           // const t = await log();
            //console.log(t);
             const response = await authService.login(email, password,rememberMe);
-            Cookies.set('auth', 'true', { expires: 10000 });
-            login(response.data);
-
+            Cookies.set('auth', 'true', { expires: 1000 });
+            login(response.data.patient);
+		            
             console.log(response.data);
-            redirect("/");
+            
+            navigate("/")
         } catch (error) {
             console.error(error);
+            
+            navigate("/erorr")
         }
     };
 
